@@ -36,8 +36,8 @@ services:
     ports:
       - "5050:80"
   redis:
+    image: redis:latest
     restart: always
-    image: redis
     # Add the custom conf file to use and add a custom pwd (superpassword) (username is 'default')
     command: redis-server /redis.conf --requirepass superpassword
     # map the volumes to use the custom conf file from this project.

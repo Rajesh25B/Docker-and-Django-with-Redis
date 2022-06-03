@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # local apps
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +89,17 @@ DATABASES = {
     }
 }
 
+# default client configurations and have set default cache ttl(Time to live)
+CACHE_TTL = 60 * 1500
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://default:superpassword@redis:6379',
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
